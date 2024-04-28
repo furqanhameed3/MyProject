@@ -24,6 +24,14 @@ export const styles = StyleSheet.create({
     top: 195,
     overflow: 'hidden',
   },
+  bottomImg: {
+    height: 250,
+    width: 250,
+    position: 'absolute',
+    right: -95,
+    bottom: 95,
+    overflow: 'hidden',
+  },
   taskContainer: {
     backgroundColor: '#fff',
     borderRadius: 5,
@@ -33,15 +41,6 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     marginBottom: h('0.8%'),
-  },
-  taskItem: {
-    padding: h('0.8%'),
-    backgroundColor: '#b4f9e8',
-    marginVertical: h('0.5%'),
-    borderRadius: 5,
-    paddingVertical: h('1%'),
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    color: COLORS.black,
   },
 });

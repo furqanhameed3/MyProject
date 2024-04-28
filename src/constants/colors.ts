@@ -4,7 +4,7 @@ const palette = {
   neutral900: '#000000',
 
   primary400: '#f8f7f7',
-  primary500: '#aae581',
+  primary500: '#4A3780',
 
   secondary400: '#2A2D4380',
   secondary500: '#214a82',
