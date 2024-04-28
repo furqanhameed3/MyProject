@@ -5,13 +5,15 @@
  * @format
  */
 
-import React from "react";
-import Home from "./src/screens/Home";
-
+import React from 'react';
+import Home from './src/screens/Home';
+import Realm from './src/Providers/Realm';
 function App(): React.JSX.Element {
   return (
     <>
-      <Home />
+      <Realm>
+        <Home />
+      </Realm>
     </>
   );
 }
