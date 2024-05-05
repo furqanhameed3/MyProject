@@ -10,22 +10,30 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import {COLORS, Ionicons, h} from '../constants';
+import {useQuery, useRealm} from '@realm/react';
+import {Task} from '../models/Task';
+import {BSON} from 'realm';
 
 const TaskItem = () => {
-  const [taskItem, setTaskItem] = useState([
-    {id: 1, title: 'Task 1'},
-    {id: 2, title: 'Task 2'},
-  ]);
+  const realm = useRealm();
+  const taskItem = useQuery(Task);
+
   const [newTaskItem, setNewTaskItem] = useState('');
   const handleAddTaskItem = () => {
     if (!newTaskItem) return;
-    setTaskItem([...taskItem, {id: taskItem.length + 1, title: newTaskItem}]);
+
+    realm.write(() => {
+      realm.create(Task, {description: newTaskItem, owner_id: '123'});
+    });
+
     Keyboard.dismiss();
     setNewTaskItem('');
   };
 
-  const hadnleDeleteTaskItem = (id: number) => {
-    setTaskItem(taskItem.filter(item => item.id !== id));
+  const hadnleDeleteTaskItem = (_id: number) => {
+    realm.write(() => {
+      realm.delete(realm.objectForPrimaryKey(Task, new BSON.ObjectId(_id)));
+    });
   };
   return (
     <View>
@@ -34,8 +42,8 @@ const TaskItem = () => {
         showsVerticalScrollIndicator={false}
         renderItem={({item}) => (
           <View style={styles.taskItem}>
-            <Text>{item.title}</Text>
-            <Pressable onPress={() => hadnleDeleteTaskItem(item.id)}>
+            <Text>{item.description}</Text>
+            <Pressable onPress={() => hadnleDeleteTaskItem(item._id)}>
               <Ionicons name="close-sharp" size={20} />
             </Pressable>
           </View>

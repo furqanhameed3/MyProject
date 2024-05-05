@@ -8,11 +8,12 @@
 import React from 'react';
 import Home from './src/screens/Home';
 import Realm from './src/Providers/Realm';
+import Layout from './src/Providers/Layout';
 function App(): React.JSX.Element {
   return (
     <>
       <Realm>
-        <Home />
+        <Layout />
       </Realm>
     </>
   );
