@@ -20,17 +20,14 @@ const TaskItem = () => {
 
   const [newTaskItem, setNewTaskItem] = useState('');
   const handleAddTaskItem = () => {
-    if (!newTaskItem) return;
-
     realm.write(() => {
       realm.create(Task, {description: newTaskItem, owner_id: '123'});
     });
-
     Keyboard.dismiss();
     setNewTaskItem('');
   };
 
-  const hadnleDeleteTaskItem = (_id: number) => {
+  const hadnleDeleteTaskItem = (_id: any) => {
     realm.write(() => {
       realm.delete(realm.objectForPrimaryKey(Task, new BSON.ObjectId(_id)));
     });
@@ -55,7 +52,10 @@ const TaskItem = () => {
         style={styles.itemInput}
         value={newTaskItem}
       />
-      <TouchableOpacity onPress={handleAddTaskItem} style={styles.addTaskBtn}>
+      <TouchableOpacity
+        disabled={!newTaskItem}
+        onPress={handleAddTaskItem}
+        style={[styles.addTaskBtn, {opacity: !newTaskItem ? 0.7 : 1}]}>
         <Text style={styles.taskTxt}>Add Task</Text>
       </TouchableOpacity>
     </View>
