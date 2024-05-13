@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       {Platform.OS == 'ios' && (
-        <SafeAreaView style={{flex: 0, backgroundColor: COLORS.primary1}} />
+        <SafeAreaView style={{flex: 0, backgroundColor: COLORS.lightGray}} />
       )}
       <View style={styles.container}>
         <Image source={IMAGES.ellipse} style={styles.bgImg} />
