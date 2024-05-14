@@ -1,11 +1,12 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from '../screens/Home';
+
 import {StatusBar} from 'react-native';
 import Login from '../screens/Auth/Login';
 import SignUp from '../screens/Auth/SignUp';
 import {COLORS} from '../constants';
+import Home from '../screens/Home';
 
 const Stack = createNativeStackNavigator();
 const NativeStack = createNativeStackNavigator();
@@ -52,7 +53,7 @@ const Layout = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="SignUp"
+        initialRouteName="Home"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />

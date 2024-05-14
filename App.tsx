@@ -8,7 +8,8 @@
 import React from 'react';
 import Home from './src/screens/Home';
 import Realm from './src/Providers/Realm';
-import Layout from './src/Providers/Layout';
+import Layout from './src/Providers/layout';
+
 function App(): React.JSX.Element {
   return (
     <>
