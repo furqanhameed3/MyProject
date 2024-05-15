@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './styles';
 import {COLORS, h, w} from '../../../constants';
 import CustomInput from '../../../Components/CustomInput';
@@ -14,11 +14,30 @@ import Button from '../../../Components/Button';
 import {Formik} from 'formik';
 import {SignupFormValues, initialValues_SignupForm} from '../../../types';
 import {signupValidationSchema} from '../../../utils';
+import {Sign_up, saveDetails} from '../../../services/api';
+import ToastMessage from '../../../Components/ToastMessage';
 
 const SignUp = ({navigation}: any) => {
-  const onSubmit = (Values: SignupFormValues) => {
-    console.log('Values', Values);
+  const {showSuccessToast, showErrorToast} = ToastMessage();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubmit = async (values: SignupFormValues) => {
+    setIsLoading(true);
+    try {
+      const {user, message, error} = await Sign_up(values, setIsLoading);
+      if (error) {
+        showErrorToast(message);
+      } else {
+        showSuccessToast(message);
+        saveDetails(values, user?.uid);
+        navigation.navigate('Login');
+      }
+    } catch (error) {
+      console.error('Signup Submission Error:', error);
+      showErrorToast('An error occurred while signing up. Please try again.');
+    }
   };
+
   return (
     <>
       {Platform.OS == 'ios' && (
@@ -109,6 +128,7 @@ const SignUp = ({navigation}: any) => {
                   onPress={() => handleSubmit()}
                   regularBtn
                   title="Sign Up"
+                  loading={isLoading}
                 />
               </View>
             </>
@@ -118,7 +138,11 @@ const SignUp = ({navigation}: any) => {
         <Text style={styles.simpleTxt}>Or</Text>
         <View style={[styles.btnContainer, {marginTop: h('1%')}]}>
           <Button google socialBtn title="Sign Up With Gooogle" />
-          <Button socialBtn title="Sign Up With Facebook" />
+          <Button
+            onPress={() => ToastMessage()}
+            socialBtn
+            title="Sign Up With Facebook"
+          />
         </View>
         <View style={styles.signupView}>
           <Text style={styles.txtAcc}>Already have an account?</Text>

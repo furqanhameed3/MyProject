@@ -50,7 +50,7 @@ const Button = ({
           <View style={{flexDirection: 'row'}}>
             {loading ? (
               <LoaderKit
-                style={{width: 28, height: 28}}
+                style={{width: 18, height: 18}}
                 name={'BallTrianglePath'}
                 color={'white'}
               />
@@ -66,7 +66,7 @@ const Button = ({
           <View style={{flexDirection: 'row'}}>
             {loading ? (
               <LoaderKit
-                style={{width: 28, height: 28}}
+                style={{width: 18, height: 18}}
                 name={'BallTrianglePath'}
                 color={'white'}
               />
@@ -80,7 +80,7 @@ const Button = ({
           <View style={{flexDirection: 'row'}}>
             {loading ? (
               <LoaderKit
-                style={{width: 28, height: 28}}
+                style={{width: 18, height: 18}}
                 name={'BallTrianglePath'}
                 color={'white'}
               />
