@@ -5,7 +5,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './styles';
 
 import {COLORS, w} from '../../../constants';
@@ -14,10 +14,26 @@ import Button from '../../../Components/Button';
 import {Formik} from 'formik';
 import {LoginFormValues, initialValues_LoginForm} from '../../../types';
 import {loginValidationSchema} from '../../../utils';
+import ToastMessage from '../../../Components/ToastMessage';
+import {Sing_In} from '../../../services/api';
 
 const Login = ({navigation}: any) => {
-  const onSubmit = (values: LoginFormValues) => {
-    console.log('Values Submit', values);
+  const {showSuccessToast, showErrorToast} = ToastMessage();
+  const [isLoading, setIsLoading] = useState(false);
+  const onSubmit = async (values: LoginFormValues) => {
+    setIsLoading(true);
+    try {
+      const {message, error} = await Sing_In(values, setIsLoading);
+      if (error) {
+        showErrorToast(message);
+      } else {
+        showSuccessToast(message);
+        navigation.navigate('Home');
+      }
+    } catch (error) {
+      console.error('Signup Submission Error:', error);
+      showErrorToast('An error occurred while signing up. Please try again.');
+    }
   };
   return (
     <>
@@ -71,6 +87,7 @@ const Login = ({navigation}: any) => {
                   onPress={() => handleSubmit()}
                   regularBtn
                   title="Login"
+                  loading={isLoading}
                 />
               </View>
             </>

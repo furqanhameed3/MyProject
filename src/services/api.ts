@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
-import {SignupFormValues} from '../types';
+import {LoginFormValues, SignupFormValues} from '../types';
 export const Sign_up = async (values: SignupFormValues, setIsLoading: any) => {
   const {name, email, phone, password} = values;
 
@@ -45,5 +45,29 @@ export const saveDetails = async (values: SignupFormValues, id: any) => {
       });
   } catch (error) {
     console.error('Signup Error:', error);
+  }
+};
+
+export const Sing_In = async (values: LoginFormValues, setIsLoading: any) => {
+  const {email, password} = values;
+  try {
+    setIsLoading(true);
+    const userCredential = await auth().signInWithEmailAndPassword(
+      email,
+      password,
+    );
+    const user = userCredential.user;
+
+    console.log('User signed in:', user);
+    setIsLoading(false);
+    return {error: false, message: 'Sign In successfully!'};
+  } catch (error: any) {
+    setIsLoading(false);
+    let errorMessage = 'An error occurred while signing up.';
+    if (error.code === 'auth/invalid-credential') {
+      errorMessage = 'The email or password is invalid!';
+    }
+    console.error('SignIn Error:', error);
+    return {error: true, message: errorMessage};
   }
 };
