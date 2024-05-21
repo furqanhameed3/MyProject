@@ -1,10 +1,20 @@
-import {Text, Platform, SafeAreaView, View, Image} from 'react-native';
+import {
+  Text,
+  Platform,
+  SafeAreaView,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {styles} from './styles';
-import {COLORS, IMAGES, Ionicons} from '../../constants';
+import {COLORS, Entypo, IMAGES, Ionicons} from '../../constants';
 import TaskItem from '../../Components/TaskItem';
+import Button from '../../Components/Button';
+import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
+  const navigation = useNavigation();
   return (
     <>
       {Platform.OS == 'ios' && (
@@ -19,6 +29,12 @@ const Home = () => {
           <Text style={styles.taskTitle}>Todo</Text>
           <TaskItem />
         </View>
+
+        <TouchableOpacity
+          style={styles.chatBtn}
+          onPress={() => navigation.navigate('Chat')}>
+          <Entypo name="chat" size={35} color={COLORS.primary1} />
+        </TouchableOpacity>
       </View>
     </>
   );

@@ -1,5 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
+
 import {LoginFormValues, SignupFormValues} from '../types';
 export const Sign_up = async (values: SignupFormValues, setIsLoading: any) => {
   const {name, email, phone, password} = values;

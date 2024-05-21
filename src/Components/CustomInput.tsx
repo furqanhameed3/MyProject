@@ -27,7 +27,7 @@ const CustomInput = ({
           <TextInput
             placeholder={placeholder}
             placeholderTextColor={COLORS.gray}
-            style={{flex: 1, height: h('5.5%')}}
+            style={{height: h('5.9%')}}
             value={value}
             onChangeText={onChangeText}
             onBlur={onBlur}
@@ -43,7 +43,7 @@ const CustomInput = ({
               placeholder={placeholder}
               placeholderTextColor={COLORS.gray}
               secureTextEntry={isPassVisible}
-              style={{flex: 1, height: h('5.5%')}}
+              style={{height: h('5.5%')}}
               value={value}
               onChangeText={onChangeText}
               onBlur={onBlur}

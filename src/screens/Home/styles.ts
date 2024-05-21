@@ -43,4 +43,16 @@ export const styles = StyleSheet.create({
     marginBottom: h('0.8%'),
     color: COLORS.black,
   },
+  chatBtn: {
+    backgroundColor: COLORS.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: h('0.5%'),
+    height: h('8%'),
+    width: h('8%'),
+    borderRadius: h('5%'),
+    position: 'absolute',
+    bottom: h('5%'),
+    right: h('4%'),
+  },
 });

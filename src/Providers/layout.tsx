@@ -7,6 +7,7 @@ import Login from '../screens/Auth/Login';
 import SignUp from '../screens/Auth/SignUp';
 import {COLORS} from '../constants';
 import Home from '../screens/Home';
+import Chat from '../screens/chat';
 
 const Stack = createNativeStackNavigator();
 const NativeStack = createNativeStackNavigator();
@@ -58,6 +59,7 @@ const Layout = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="Chat" component={Chat} />
       </Stack.Navigator>
     </NavigationContainer>
   );
