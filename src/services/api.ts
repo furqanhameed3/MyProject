@@ -1,7 +1,10 @@
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
+import firestore from '@react-native-firebase/firestore';
 
 import {LoginFormValues, SignupFormValues} from '../types';
+import {dispatch} from '../redux/store';
+import {saveUid, saveUser} from '../redux/slices/employeeSlice';
 export const Sign_up = async (values: SignupFormValues, setIsLoading: any) => {
   const {name, email, phone, password} = values;
 
@@ -33,17 +36,24 @@ export const Sign_up = async (values: SignupFormValues, setIsLoading: any) => {
 
 export const saveDetails = async (values: SignupFormValues, id: any) => {
   try {
-    const userData = {
+    const userData: any = {
       fullName: values.name,
       phoneNumber: values.phone,
       email: values.email,
     };
-    await database()
-      .ref(`users/${id}`)
+    const userDocument = await firestore()
+      .collection('Users')
+      .doc(id)
       .set(userData)
       .then(() => {
-        console.log('User data stored in Realtime Database:', userData);
+        console.log('User data stored in Firestore:', userData);
       });
+    // await database()
+    //   .ref(`users/${id}`)
+    //   .set(userData)
+    //   .then(() => {
+    //     console.log('User data stored in Realtime Database:', userData);
+    //   });
   } catch (error) {
     console.error('Signup Error:', error);
   }
@@ -59,8 +69,11 @@ export const Sing_In = async (values: LoginFormValues, setIsLoading: any) => {
     );
     const user = userCredential.user;
 
-    console.log('User signed in:', user);
+    console.log('User signed in:', user.uid);
+
     setIsLoading(false);
+    dispatch(saveUid(user.uid));
+    // dispatch(saveUser(response.data.user));
     return {error: false, message: 'Sign In successfully!'};
   } catch (error: any) {
     setIsLoading(false);

@@ -28,7 +28,7 @@ const Login = ({navigation}: any) => {
         showErrorToast(message);
       } else {
         showSuccessToast(message);
-        navigation.navigate('Home');
+        // navigation.navigate('Home');
       }
     } catch (error) {
       console.error('Signup Submission Error:', error);
