@@ -69,11 +69,10 @@ export const Sing_In = async (values: LoginFormValues, setIsLoading: any) => {
     );
     const user = userCredential.user;
 
-    console.log('User signed in:', user.uid);
-
+    console.log('User signed in:', user.email);
     setIsLoading(false);
     dispatch(saveUid(user.uid));
-    // dispatch(saveUser(response.data.user));
+    dispatch(saveUser(user.email));
     return {error: false, message: 'Sign In successfully!'};
   } catch (error: any) {
     setIsLoading(false);

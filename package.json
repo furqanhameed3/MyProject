@@ -23,6 +23,7 @@
     "@realm/react": "^0.6.2",
     "@reduxjs/toolkit": "^2.2.5",
     "formik": "^2.4.6",
+    "moment": "^2.30.1",
     "react": "18.2.0",
     "react-native": "0.73.7",
     "react-native-gifted-chat": "^2.4.0",

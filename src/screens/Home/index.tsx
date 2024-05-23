@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <>
       {Platform.OS == 'ios' && (
-        <SafeAreaView style={{flex: 0, backgroundColor: COLORS.lightGray}} />
+        <SafeAreaView style={{flex: 0, backgroundColor: COLORS.lightBg}} />
       )}
       <View style={styles.container}>
         <Image source={IMAGES.ellipse} style={styles.bgImg} />
@@ -32,7 +32,7 @@ const Home = () => {
 
         <TouchableOpacity
           style={styles.chatBtn}
-          onPress={() => navigation.navigate('Chat')}>
+          onPress={() => navigation.navigate('Messages')}>
           <Entypo name="chat" size={35} color={COLORS.primary1} />
         </TouchableOpacity>
       </View>
