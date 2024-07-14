@@ -5,7 +5,7 @@ import {Bubble, GiftedChat, InputToolbar, Send} from 'react-native-gifted-chat';
 import {COLORS, Entypo, w, shadow, h} from '../constants';
 
 const GiftedChatScreen = ({navigation}: any) => {
-  const [messages, setMessages] = useState([]);
+  const [messageList, setMessageList] = useState<any>([]);
 
   const renderBubble = (props: any) => {
     return (
@@ -13,13 +13,14 @@ const GiftedChatScreen = ({navigation}: any) => {
         {...props}
         wrapperStyle={{
           right: {
-            backgroundColor: COLORS.primary1 + 30,
+            backgroundColor: COLORS.secondary,
             borderRadius: 15,
             marginBottom: 5,
             // borderBottomRightRadius: 5,
+            right: 15,
           },
           left: {
-            backgroundColor: COLORS.primary2 + 30,
+            backgroundColor: COLORS.secondary,
             borderRadius: 15,
             marginBottom: 5,
           },
@@ -73,10 +74,15 @@ const GiftedChatScreen = ({navigation}: any) => {
       />
     );
   };
+  const onSend = useCallback(async (messgaes = []) => {
+    setMessageList((previousMessages: any) =>
+      GiftedChat.append(previousMessages, messgaes),
+    );
+  }, []);
   return (
     <GiftedChat
-      messages={messages}
-      // onSend={(messages: any) => onSend(messages)}
+      messages={messageList}
+      onSend={(messages: any) => onSend(messages)}
       // user={{
       //   _id: user?.id,
       // }}

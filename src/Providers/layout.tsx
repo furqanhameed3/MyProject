@@ -9,6 +9,7 @@ import {COLORS} from '../constants';
 import {StatusBar} from 'react-native';
 import {useSelector} from 'react-redux';
 import Messages from '../screens/messages';
+import Maps from '../screens/map';
 
 const Stack = createNativeStackNavigator();
 const NativeStack = createNativeStackNavigator();
@@ -43,12 +44,13 @@ export const AppStack = () => {
           headerShown: false,
           // cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
-        initialRouteName="Home">
+        initialRouteName="Maps">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="Chat" component={Chat} />
         <Stack.Screen name="Messages" component={Messages} />
+        <Stack.Screen name="Maps" component={Maps} />
       </Stack.Navigator>
     </>
   );

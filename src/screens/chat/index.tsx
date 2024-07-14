@@ -4,7 +4,11 @@ import React from 'react';
 import GiftedChatScreen from '../../Components/GiftedChatScreen';
 import {h} from '../../constants';
 
-const Chat = () => {
+const Chat = ({route}: any) => {
+  const data = route.params;
+
+  console.log('data', data);
+
   return (
     <View style={{flex: 1, marginHorizontal: h('2%'), marginBottom: h('2%')}}>
       <GiftedChatScreen />
