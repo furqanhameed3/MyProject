@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {COLORS, h} from '../../constants';
+import {COLORS, h, w} from '../../constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -54,5 +54,55 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     bottom: h('5%'),
     right: h('4%'),
+  },
+
+  dropdownButtonStyle: {
+    width: w('80%'),
+    height: 50,
+    backgroundColor: '#E9ECEF',
+    borderRadius: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 12,
+  },
+  dropdownButtonTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#151E26',
+  },
+  dropdownButtonArrowStyle: {
+    fontSize: 28,
+  },
+  dropdownButtonIconStyle: {
+    height: '40%',
+    width: '10%',
+    marginRight: h('1%'),
+  },
+  dropdownMenuStyle: {
+    backgroundColor: '#E9ECEF',
+    borderRadius: 8,
+  },
+  dropdownItemStyle: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingHorizontal: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.gray,
+  },
+  dropdownItemTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#151E26',
+  },
+  dropdownItemIconStyle: {
+    height: '80%',
+    width: '10%',
+    marginRight: h('1%'),
   },
 });

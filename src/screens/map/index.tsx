@@ -7,7 +7,6 @@ const Maps = () => {
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <MapView
-          //   mapType="none"
           style={styles.mapStyle}
           initialRegion={{
             latitude: 37.78825,
